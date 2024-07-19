@@ -18,7 +18,13 @@ Route::get('/', HomeController::class);
 
 
 Route::controller(CursoController::class)->group(function () {
-    Route::get('cursos','index');
-    Route::get('cursos/create','create');
-    Route::get('cursos/{curso}', 'show');
+    Route::get('cursos','index')->name('cursos.index');
+    Route::get('cursos/create','create')->name('cursos.create');
+    Route::get('cursos/{curso}', 'show')->name('cursos.show');
 });
+
+Route::post('cursos', [CursoController::class, 'store'])->name('cursos.store');
+
+Route::get('cursos/{curso}/edit',[CursoController::class,'edit'])->name('cursos.edit');
+
+Route::put('cursos/{curso}',[CursoController::class,'update'])->name('cursos.update');
