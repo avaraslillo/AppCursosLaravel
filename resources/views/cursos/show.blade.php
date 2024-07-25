@@ -21,6 +21,12 @@
     <p class="text-zinc-800 text-lg"><b>Categoría:</b> 
         <strong>{{ $curso->category }}</strong>
     </p>
+    <form action="{{ route('cursos.destroy', $curso)}}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit"
+        class="bg-red-800 hover:bg-red-600 rounded-md ease-in-out duration-300 hover:underline text-white p-4">Eliminar Curso</button>
+    </form>
 </div>
 
 @endsection

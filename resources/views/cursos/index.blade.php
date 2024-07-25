@@ -12,7 +12,7 @@ class="bg-sky-500 hover:bg-cyan.600 rounded-md ease-in-out duration-300 hover:un
     @foreach ($cursos as $curso )
 
         <li class="border-b-2 pt-2 border-grey-200 hover:text-slate-500">
-            <a href="{{ route('cursos.show', $curso->id) }}">
+            <a href="{{ route('cursos.show', $curso->slug) }}">
                 {{ $curso->name }}
             </a>
         </li>

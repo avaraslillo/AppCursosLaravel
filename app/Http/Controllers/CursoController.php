@@ -31,11 +31,13 @@ class CursoController extends Controller
             'description'=>'required',
             'category'=>'required'
         ]);
-        $curso = new Curso();
-        $curso->name = filter_var($request->name, FILTER_SANITIZE_STRING);
-        $curso->description = filter_var($request->description, FILTER_SANITIZE_STRING);
-        $curso->category = filter_var($request->category, FILTER_SANITIZE_STRING);
-        $curso->save();
+
+        $curso = Curso::create($request->all());
+        //$curso = new Curso();
+        //$curso->name = filter_var($request->name, FILTER_SANITIZE_STRING);
+        //$curso->description = filter_var($request->description, FILTER_SANITIZE_STRING);
+        //$curso->category = filter_var($request->category, FILTER_SANITIZE_STRING);
+        //$curso->save();
         return redirect()->route('cursos.show',$curso);
     }
 
@@ -49,11 +51,17 @@ class CursoController extends Controller
             'description'=>'required',
             'category'=>'required'
         ]);
-        $curso->name = filter_var($request->name, FILTER_SANITIZE_STRING);
+        $curso->update($request->all());
+        /*$curso->name = filter_var($request->name, FILTER_SANITIZE_STRING);
         $curso->description = filter_var($request->description, FILTER_SANITIZE_STRING);
         $curso->category = filter_var($request->category, FILTER_SANITIZE_STRING);
-        $curso->save();
+        $curso->save();*/
         return redirect()->route('cursos.show',$curso);
+    }
+
+    public function destroy(Curso $curso){
+        $curso->delete();
+        return redirect()->route('cursos.index');
     }
 
 }
